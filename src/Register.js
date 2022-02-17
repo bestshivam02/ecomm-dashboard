@@ -1,10 +1,12 @@
 import React,{useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 
 function Register() 
 {
     const [name,setName]=useState("");
     const [password,setPassword]=useState("");
     const [email,setEmail]=useState("");
+    const navigate = useNavigate();
 
 async function signUp() 
 {
@@ -19,7 +21,9 @@ async function signUp()
         body:JSON.stringify(item)
     });
     result = await result.json();
-    console.warn("result", result)
+    console.warn("result", result);
+    localStorage.setItem("user-info",JSON.stringify(result));
+    navigate("/add");
 }
 
     return(
